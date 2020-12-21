@@ -15,7 +15,7 @@ export default class MDXRuntimeTest extends Component {
     const { data } = this.props;
 
     if (!data) {
-      return this.props.children;
+      return null;
     }
     const {
       allMdx,

@@ -25,12 +25,13 @@ const LoadableComponent = Loadable({
 });
 
 /* eslint-disable react/jsx-key */
-const CodeBlock = ({ children: exampleCode, ...props }) => {
+const CodeBlock = ({ children: exampleCode, className, ...props }) => {
   if (props['react-live']) {
     return <LoadableComponent code={exampleCode} />;
   } else {
+    const language = className ? className.replace(/^language-/, '') : 'javascript';
     return (
-      <Highlight {...defaultProps} code={exampleCode} language="javascript" theme={prismTheme}>
+      <Highlight {...defaultProps} code={exampleCode} language={language} theme={prismTheme}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className + ' pre'} style={style} p={3}>
             {cleanTokens(tokens).map((line, i) => {
